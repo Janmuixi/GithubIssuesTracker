@@ -1,7 +1,30 @@
-import { Issue } from "../types/Issue";
+import { Issue } from "../services/types";
+import { IssuesListContainer, IssuesListItemContainer } from "./styles";
 
-export default function IssuesList({ issuesList }: { issuesList: Issue[] }) {
-  return issuesList.map((issue) => {
-    return <div key={issue.name}>{issue.name}</div>;
-  });
+export default function IssuesList({ issuesList, isLoading, isError }: { issuesList: Issue[], isLoading: boolean, isError: boolean }) {
+  if (isLoading) {
+    return <IssuesListContainer><div>Loading...</div></IssuesListContainer>
+  } else if (isError) {
+    return <IssuesListContainer>There has been an error while fetching</IssuesListContainer>
+  } else if (issuesList.length < 1) {
+    return <IssuesListContainer>Empty results</IssuesListContainer>
+  } else {
+    return (
+      <IssuesListContainer>
+        {issuesList.map((issue) => {
+          return <IssuesListItem key={issue.id} issue={issue} />
+        })}
+      </IssuesListContainer>
+    )
+    
+  }
+}
+
+export function IssuesListItem({ issue }: { issue: Issue}) {
+  return (
+    <IssuesListItemContainer>
+      <div className="title">{issue.title}</div>
+      <div>{issue.state}</div>
+    </IssuesListItemContainer>
+  )
 }

@@ -1,24 +1,39 @@
 // import { fetchUsers } from '../services/users'
-import { useInfiniteQuery } from '@tanstack/react-query'
-import { type Issue } from '../types/Issue'
-import { fetchIssues } from '../services/issues'
+import { useInfiniteQuery } from "@tanstack/react-query"
+import { InfiniteQueryResponse } from "../services/types"
+import { fetchIssues } from "../services/issues"
+import { useState } from "react"
 
-export const useUsers = (searchText: string) => {
-  const { isLoading, isError, data, refetch, fetchNextPage, hasNextPage } = useInfiniteQuery<{ nextCursor?: number, issues: Issue[] }>(
-    ['issues', searchText], // <- la key de la información o de la query
-    ({ pageParam }) => fetchIssues({ pageParam, searchText }),
-    {
-      getNextPageParam: (lastPage) => lastPage.nextCursor,
-      refetchOnWindowFocus: false,
-    }
-  )
-
-  return {
-    refetch,
+export const useIssues = (searchText: string, openStatusFilter: boolean) => {
+  const [queryKey, setQueryKey] = useState(0)
+  const {
+    data,
     fetchNextPage,
+    isFetching,
+    refetch,
     isLoading,
     isError,
-    issues: data?.pages.flatMap(page => page.issues) ?? [],
-    hasNextPage,
+    error,
+  } = useInfiniteQuery<InfiniteQueryResponse>(
+    ["repository-issues", queryKey],
+    async ({ pageParam }) => {
+      return fetchIssues({ pageParam, searchText, openStatusFilter })
+    },
+    {
+      getNextPageParam: (lastPage) =>
+        lastPage.search.pageInfo.endCursor || undefined,
+      refetchOnWindowFocus: false
+    }
+  )
+  
+  return {
+    reset: () => setQueryKey(queryKey + 1),
+    refetch,
+    fetchNextPage,
+    isLoading: isLoading || isFetching,
+    isError,
+    error,
+    issues: data?.pages.flatMap((page) => page.search.edges.map((value) => value.node)) ?? [],
+    hasNextPage: data?.pages[data.pages.length - 1].search.pageInfo.hasNextPage,
   }
 }

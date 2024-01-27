@@ -1,41 +1,69 @@
-"use client";
-import styled from "styled-components";
-import SearchBar from "./components/Searchbar";
-import { Suspense, useEffect, useState } from "react";
-import { useUsers } from "./hooks/useIssues";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import IssuesList from "./components/IssuesList";
-const MainStyled = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6rem;
-  min-height: 100vh;
-`;
+"use client"
+import SearchBar from "./components/Searchbar"
+import { useEffect, useState } from "react"
+import { useIssues } from "./hooks/useIssues"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
+import IssuesList from "./components/IssuesList"
+import { ApolloProvider } from "@apollo/client"
+import client from "./services/apollo-client"
+import { MainStyled } from "./styles"
 
 export function Main() {
-  const [searchText, setSearchText] = useState("");
-  const { isLoading, isError, issues, refetch, fetchNextPage, hasNextPage } = useUsers(searchText)
+  const [searchText, setSearchText] = useState<string>("")
+  const [openStatusFilter, setOpenStatusFilter] = useState<boolean>(true)
+  const {
+    isLoading,
+    isError,
+    issues,
+    reset,
+    fetchNextPage,
+    hasNextPage,
+  } = useIssues(searchText, openStatusFilter)
+
+  useEffect(() => {
+    reset()
+  }, [searchText, openStatusFilter])
 
   return (
     <MainStyled>
-      <SearchBar searchText={searchText} setSearchText={setSearchText} />
-      {/* <Suspense fallback={ <Loading /> }></Suspense> */}
-      <IssuesList issuesList={issues} />
-      <button onClick={() => { void fetchNextPage() }}>get more items</button>
+      <ApolloProvider client={client}>
+        <SearchBar statusFilter={openStatusFilter} setStatusFilter={setOpenStatusFilter} searchText={searchText} setSearchText={setSearchText} />
+        <IssuesList isError={isError} isLoading={isLoading} issuesList={issues} />
+        <LoadMoreButton
+          hasNextPage={hasNextPage}
+          fetchNextPage={fetchNextPage}
+        />
+      </ApolloProvider>
     </MainStyled>
   )
 }
-
+export function LoadMoreButton({
+  hasNextPage,
+  fetchNextPage,
+}: {
+  hasNextPage: boolean | undefined
+  fetchNextPage: () => void
+}) {
+  if (hasNextPage) {
+    return (
+      <button
+        className="load-more-button"
+        onClick={() => {
+          void fetchNextPage()
+        }}
+      >
+        Find more issues...
+      </button>
+    )
+  }
+}
 export default function Home() {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient()
   return (
     <QueryClientProvider client={queryClient}>
-      <Main>
-      </Main>
+      <Main></Main>
       <ReactQueryDevtools />
     </QueryClientProvider>
-  );
+  )
 }
