@@ -1,5 +1,7 @@
+import ArrowIcon from "../icons/ArrowIcon";
 import { Issue } from "../services/types";
 import { IssuesListContainer, IssuesListItemContainer } from "./styles";
+import Image from 'next/image'
 
 export default function IssuesList({ issuesList, isLoading, isError }: { issuesList: Issue[], isLoading: boolean, isError: boolean }) {
   if (isLoading) {
@@ -23,8 +25,12 @@ export default function IssuesList({ issuesList, isLoading, isError }: { issuesL
 export function IssuesListItem({ issue }: { issue: Issue}) {
   return (
     <IssuesListItemContainer>
-      <div className="title">{issue.title}</div>
-      <div>{issue.state}</div>
+      <Image className="avatar" width={40} height={40} src={issue.author.avatarUrl} alt="avatar-image" />
+      <div className="content">
+        <div className="title">{issue.title}</div>
+        <div>{issue.author.login}</div>
+      </div>
+      <ArrowIcon />
     </IssuesListItemContainer>
   )
 }

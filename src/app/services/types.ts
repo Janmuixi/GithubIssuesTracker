@@ -1,5 +1,6 @@
 export interface Issue {
   id: string;
+  author: { login: string, avatarUrl: string };
   title: string;
   body: string;
   number: number;

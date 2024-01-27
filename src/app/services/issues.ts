@@ -1,9 +1,6 @@
 import { GET_REPOSITORY_ISSUES } from "../lib/querys";
 import client from "./apollo-client";
 
-const delay = async (ms: number) =>
-  await new Promise((resolve) => setTimeout(resolve, ms));
-
 export const fetchIssues = async ({
   pageParam,
   searchText,

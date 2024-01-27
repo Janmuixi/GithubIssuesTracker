@@ -78,13 +78,24 @@ export const IssuesListItemContainer = styled.div`
     height: 100px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.10);
     display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    cursor: pointer;
+    padding: 5px;
     .title {
         width: 100%;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        width: 80%;
+    }
+    .avatar {
+        border-radius: 40px;
     }
 `

@@ -31,6 +31,7 @@ export function Main() {
         <SearchBar statusFilter={openStatusFilter} setStatusFilter={setOpenStatusFilter} searchText={searchText} setSearchText={setSearchText} />
         <IssuesList isError={isError} isLoading={isLoading} issuesList={issues} />
         <LoadMoreButton
+          isLoading={isLoading}
           hasNextPage={hasNextPage}
           fetchNextPage={fetchNextPage}
         />
@@ -39,13 +40,15 @@ export function Main() {
   )
 }
 export function LoadMoreButton({
+  isLoading,
   hasNextPage,
   fetchNextPage,
 }: {
+  isLoading: boolean
   hasNextPage: boolean | undefined
   fetchNextPage: () => void
 }) {
-  if (hasNextPage) {
+  if (hasNextPage && !isLoading) {
     return (
       <button
         className="load-more-button"

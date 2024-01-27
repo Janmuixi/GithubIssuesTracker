@@ -16,6 +16,7 @@ export const GET_REPOSITORY_ISSUES = gql`
         node {
           ... on Issue {
             id
+            author{login, avatarUrl}
             title
             body
             number
