@@ -21,9 +21,9 @@ export const MainStyled = styled.section`
     background-color: rgb(var(--background-rgb));
     transition: all 0.1s ease-in-out;
     cursor: pointer;
-  }
-  .load-more-button:hover {
-    color: rgb(var(--background-rgb));
-    background-color: #b554d7;
+    &:hover {
+      color: rgb(var(--background-rgb));
+      background-color: #b554d7;
+    }
   }
 `

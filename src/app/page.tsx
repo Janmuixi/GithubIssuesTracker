@@ -1,12 +1,12 @@
 "use client"
-import SearchBar from "./components/Searchbar"
+import SearchBar from "../components/Searchbar"
 import { useEffect, useState } from "react"
-import { useIssues } from "./hooks/useIssues"
+import { useIssues } from "../hooks/useIssues"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
-import IssuesList from "./components/IssuesList"
+import IssuesList from "../components/IssuesList"
 import { ApolloProvider } from "@apollo/client"
-import client from "./services/apollo-client"
+import client from "../services/apollo-client"
 import { MainStyled } from "./styles"
 
 export function Main() {

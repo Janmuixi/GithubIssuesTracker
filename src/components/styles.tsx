@@ -38,6 +38,10 @@ export const CloseButton = styled.button`
     align-items: center;
     gap: 8px;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+        transform: scale(1.1);
+    }
 `;
 export const SwitchButton = styled.button`
     border-radius: 40px;
@@ -53,6 +57,10 @@ export const SwitchButton = styled.button`
     align-items: center;
     gap: 8px;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+        transform: scale(1.1);
+    }
     &.closed {
         background: rgb(255, 40, 0);
     }
@@ -75,27 +83,46 @@ export const IssuesListContainer = styled.div`
 `
 export const IssuesListItemContainer = styled.div`
     width: 100%;
-    height: 100px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.10);
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 8px;
     cursor: pointer;
-    padding: 5px;
+    padding: 10px 5px;
+    transition: all 0.2s ease;
     .title {
         width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
     }
-    .content {
+    .left-content {
+        width: 75%;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 10px;
+    }
+    .author {
+        font-weight: 700;
+        color: #b554d7;
+    }
+    .info {
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: start;
-        width: 80%;
     }
     .avatar {
         border-radius: 40px;
+    }
+    .arrow {
+        width: 40px;
+        height: 40px;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.10);
     }
 `
