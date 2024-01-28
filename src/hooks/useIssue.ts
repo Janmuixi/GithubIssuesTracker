@@ -1,40 +1,27 @@
 // import { fetchUsers } from '../services/users'
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { fetchComments } from "@/services/comments";
-import { InfiniteIssueQueryResponse } from "@/services/types";
+import { IssueQueryResponse } from "@/services/types";
+import { fetchIssue } from "@/services/issues";
 
 export const useIssue = (number: number) => {
-  const [queryKey, setQueryKey] = useState(0);
-  const {
-    data,
-    fetchNextPage,
-    isFetching,
-    refetch,
-    isLoading,
-    isError,
-    error,
-  } = useInfiniteQuery<InfiniteIssueQueryResponse>(
-    ["repository-issues", queryKey],
-    async ({ pageParam }) => {
-      return fetchComments({ pageParam, number });
-    },
-    {
-      getNextPageParam: (lastPage) =>
-        lastPage.repository.issue.comments.pageInfo.endCursor || null,
-      refetchOnWindowFocus: false,
-    }
-  );
-    console.log(data);
-    
+  const { data, isFetching, refetch, isLoading, isError, error } =
+    useQuery<IssueQueryResponse>(
+      ["repository-issue"],
+      async () => {
+        return fetchIssue({ number });
+      },
+      {
+        refetchOnWindowFocus: false,
+      }
+    );
+
   return {
-    reset: () => setQueryKey(queryKey + 1),
     refetch,
-    fetchNextPage,
+    issue: data?.repository.issue,
     isLoading: isLoading || isFetching,
     isError,
-    allComments: data?.pages.flatMap((page) => page.repository.issue.comments.nodes) ?? [],
     error,
-    hasNextPage: data?.pages[data.pages.length - 1].repository.issue.comments.pageInfo.hasNextPage
   };
 };

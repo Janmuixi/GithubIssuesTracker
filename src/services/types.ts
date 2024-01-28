@@ -17,26 +17,30 @@ export interface InfiniteSearchIssuesQueryResponse {
     }[];
   };
 }
-export interface InfiniteIssueQueryResponse {
+export interface IssueQueryResponse {
   repository: {
-    issue: IssueWithComments
+    issue: Issue
   }
 }
+export interface CommentsIssueQueryResponse {
+  comments: Comment[]
+}
 
-export interface IssueWithComments extends Issue {
+export interface IssueWithComments extends Pick<Issue, 'number'> {
   comments: {
     pageInfo: PageInfo,
     nodes: Comment[]
   }
 }
 
-interface Comment {
+export interface Comment {
+  id: string;
   author: Author;
   body: string;
   createdAt: string;
   updatedAt: string;
 }
-interface Author {
+export interface Author {
   login: string;
   avatarUrl: string;
 }

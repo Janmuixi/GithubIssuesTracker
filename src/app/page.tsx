@@ -6,6 +6,7 @@ import IssuesList from "../components/IssuesList"
 import { ApolloProvider } from "@apollo/client"
 import client from "../services/apollo-client"
 import { MainStyled } from "./styles"
+import { LoadMoreButton } from "@/components/LoadMoreButton"
 
 export function Main() {
   const [searchText, setSearchText] = useState<string>("")
@@ -35,28 +36,7 @@ export function Main() {
     </MainStyled>
   )
 }
-export function LoadMoreButton({
-  isLoading,
-  hasNextPage,
-  fetchNextPage,
-}: {
-  isLoading: boolean
-  hasNextPage: boolean | undefined
-  fetchNextPage: () => void
-}) {
-  if (hasNextPage && !isLoading) {
-    return (
-      <button
-        className="load-more-button"
-        onClick={() => {
-          void fetchNextPage()
-        }}
-      >
-        Find more issues...
-      </button>
-    )
-  }
-}
+
 export default function Home() {
   return (
     <div>

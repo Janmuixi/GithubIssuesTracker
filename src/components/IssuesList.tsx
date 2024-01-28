@@ -1,8 +1,9 @@
-import ArrowIcon from "./icons/ArrowIcon";
+import RightArrowIcon from "./icons/RightArrowIcon";
 import { Issue } from "../services/types";
 import { IssuesListContainer, IssuesListItemContainer } from "./styles";
 import Image from 'next/image'
 import Link from "next/link";
+import AvatarImage from "./AvatarImage";
 
 export default function IssuesList({ issuesList, isLoading, isError }: { issuesList: Issue[], isLoading: boolean, isError: boolean }) {
   if (isLoading) {
@@ -28,7 +29,7 @@ export function IssuesListItem({ issue }: { issue: Issue }) {
     <Link href={"/issue?number=" + issue.number}>
       <IssuesListItemContainer>
         <div className="left-content">
-          <Image className="avatar" width={40} height={40} src={issue.author.avatarUrl} alt="avatar-image" />
+          <AvatarImage avatarUrl={issue.author.avatarUrl} />
           <div className="info">
             <div className="title">{issue.title}</div>
             <div className="author">{issue.author.login}</div>
@@ -36,7 +37,7 @@ export function IssuesListItem({ issue }: { issue: Issue }) {
         </div>
 
         <div className="arrow">
-          <ArrowIcon />
+          <RightArrowIcon />
         </div>
       </IssuesListItemContainer>
     </Link>

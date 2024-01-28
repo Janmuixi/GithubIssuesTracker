@@ -72,7 +72,7 @@ export const SearchBarContainer = styled.div`
     gap: 8px;
     width: 100%;
 `;
-export const IssuesListContainer = styled.div`
+export const IssuesListContainer = styled.ul`
     min-height: 400px;
     width: 100%;
     max-width: 800px;
@@ -81,7 +81,7 @@ export const IssuesListContainer = styled.div`
     flex-direction: column;
     padding: 20px 0;
 `
-export const IssuesListItemContainer = styled.div`
+export const IssuesListItemContainer = styled.li`
     width: 100%;
     border-bottom: 1px solid rgba(255, 255, 255, 0.10);
     display: flex;
@@ -111,9 +111,6 @@ export const IssuesListItemContainer = styled.div`
         flex-direction: column;
         align-items: start;
     }
-    .avatar {
-        border-radius: 40px;
-    }
     .arrow {
         width: 40px;
         height: 40px;
@@ -124,5 +121,21 @@ export const IssuesListItemContainer = styled.div`
     }
     &:hover {
         background-color: rgba(255, 255, 255, 0.10);
+    }
+`
+export const LoadMoreButtonStyled = styled.button`
+    width: 60%;
+    max-width: 800px;
+    height: 60px;
+    border-radius: 10px;
+    font-size: 20px;
+    border: 1px solid #b554d7;
+    color: #b554d7;
+    background-color: rgb(var(--background-rgb));
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      color: rgb(var(--background-rgb));
+      background-color: #b554d7;
     }
 `
