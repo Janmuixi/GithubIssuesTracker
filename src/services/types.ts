@@ -9,14 +9,38 @@ export interface Issue {
   updatedAt: string;
   closedAt: string | null;
 }
-export interface InfiniteQueryResponse {
+export interface InfiniteSearchIssuesQueryResponse {
   search: {
-    pageInfo: {
-      endCursor: string;
-      hasNextPage: boolean;
-    };
+    pageInfo: PageInfo;
     edges: {
       node: Issue;
     }[];
   };
 }
+export interface InfiniteIssueQueryResponse {
+  repository: {
+    issue: IssueWithComments
+  }
+}
+
+export interface IssueWithComments extends Issue {
+  comments: {
+    pageInfo: PageInfo,
+    nodes: Comment[]
+  }
+}
+
+interface Comment {
+  author: Author;
+  body: string;
+  createdAt: string;
+  updatedAt: string;
+}
+interface Author {
+  login: string;
+  avatarUrl: string;
+}
+interface PageInfo {
+  endCursor: string;
+  hasNextPage: boolean;
+};

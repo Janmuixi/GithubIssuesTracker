@@ -1,6 +1,5 @@
-// import { fetchUsers } from '../services/users'
 import { useInfiniteQuery } from "@tanstack/react-query"
-import { InfiniteQueryResponse } from "../services/types"
+import { InfiniteSearchIssuesQueryResponse } from "../services/types"
 import { fetchIssues } from "../services/issues"
 import { useState } from "react"
 
@@ -14,7 +13,7 @@ export const useIssues = (searchText: string, openStatusFilter: boolean) => {
     isLoading,
     isError,
     error,
-  } = useInfiniteQuery<InfiniteQueryResponse>(
+  } = useInfiniteQuery<InfiniteSearchIssuesQueryResponse>(
     ["repository-issues", queryKey],
     async ({ pageParam }) => {
       return fetchIssues({ pageParam, searchText, openStatusFilter })

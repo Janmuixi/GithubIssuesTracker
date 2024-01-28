@@ -2,8 +2,6 @@
 import SearchBar from "../components/Searchbar"
 import { useEffect, useState } from "react"
 import { useIssues } from "../hooks/useIssues"
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import IssuesList from "../components/IssuesList"
 import { ApolloProvider } from "@apollo/client"
 import client from "../services/apollo-client"
@@ -27,7 +25,6 @@ export function Main() {
 
   return (
     <MainStyled>
-      <ApolloProvider client={client}>
         <SearchBar statusFilter={openStatusFilter} setStatusFilter={setOpenStatusFilter} searchText={searchText} setSearchText={setSearchText} />
         <IssuesList isError={isError} isLoading={isLoading} issuesList={issues} />
         <LoadMoreButton
@@ -35,7 +32,6 @@ export function Main() {
           hasNextPage={hasNextPage}
           fetchNextPage={fetchNextPage}
         />
-      </ApolloProvider>
     </MainStyled>
   )
 }
@@ -62,11 +58,9 @@ export function LoadMoreButton({
   }
 }
 export default function Home() {
-  const queryClient = new QueryClient()
   return (
-    <QueryClientProvider client={queryClient}>
-      <Main></Main>
-      <ReactQueryDevtools />
-    </QueryClientProvider>
+    <div>
+      <Main />
+    </div>
   )
 }
