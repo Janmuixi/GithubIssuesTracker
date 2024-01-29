@@ -4,11 +4,12 @@ import { IssuesListContainer, IssuesListItemContainer } from "./styles";
 import Image from 'next/image'
 import Link from "next/link";
 import AvatarImage from "./AvatarImage";
+import Loader from "./Loader";
 
 export default function IssuesList({ issuesList, isLoading, isError }: { issuesList: Issue[], isLoading: boolean, isError: boolean }) {
   if (isLoading) {
-    return <IssuesListContainer><div>Loading...</div></IssuesListContainer>
-  } else if (isError) {
+    return <Loader />
+} else if (isError) {
     return <IssuesListContainer>There has been an error while fetching</IssuesListContainer>
   } else if (issuesList.length < 1) {
     return <IssuesListContainer>Empty results</IssuesListContainer>

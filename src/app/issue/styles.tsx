@@ -62,7 +62,7 @@ export const MarkdownText = styled.div`
     border-top-left-radius: 5px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding: 5px 15px;
-    height: 50px;
+    min-height: 50px;
     background-color: rgba(117, 117, 117, 0.5);
     display: flex;
     align-items: center;
@@ -72,6 +72,8 @@ export const MarkdownText = styled.div`
     padding: 15px;
     * {
       margin-bottom: 10px;
+      text-wrap: wrap;
+      word-break: break-word;
     }
     a {
       text-decoration: underline;
@@ -90,7 +92,6 @@ export const MarkdownText = styled.div`
       background-color: rgba(255, 255, 255, 0.1);
       padding: 10px;
       border-radius: 10px;
-      text-wrap: wrap;
     }
   }
 `;

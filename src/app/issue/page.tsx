@@ -7,6 +7,8 @@ import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import AvatarImage from "@/components/AvatarImage";
 import CommentIssue from "@/components/Comment";
+import Loader from "@/components/Loader";
+import { Comment } from "@/services/types";
 
 
 export default function Issue() {
@@ -34,16 +36,32 @@ export default function Issue() {
                             <span>{allComments[0] ? (allComments.length > 1 ? `${allComments.length} comments` : '1 comment') : 'No comments'}</span>
                         </div>
                     </div>
-                    <CommentIssue author={issue?.author} createdAt={issue?.createdAt} body={issue?.body} />
-                    { allComments.map((comment) => {
-                        return (
-                            <CommentIssue key={comment.id} author={comment.author} createdAt={comment.createdAt} body={comment.body} />
-                        )
-                    }) }
+                    {issue && (
+                        <CommentIssue author={issue.author} createdAt={issue.createdAt} body={issue?.body} />
+                    )}
+                    
+                    <CommentsList isLoading={isCommentsLoading} allComments={allComments}/>
                 </div>
             </IssueStyled>
         )
     }
+    else {
+        return <Loader />
+    }
+}
 
+export function CommentsList({ allComments, isLoading }: { allComments: Comment[], isLoading: boolean }) {
+    if (isLoading) {
+        return <Loader />
+    }
+    else {
+        return (
+            allComments.map((comment) => {
+                return (
+                    <CommentIssue key={comment.id} author={comment.author} createdAt={comment.createdAt} body={comment.body} />
+                )
+            })
+        )
+    }
 }
 
