@@ -9,7 +9,7 @@ export const IssueStyled = styled.section`
   padding: 2rem;
   min-height: 100vh;
   @media screen and (min-width: 1012px) {
-    padding: 6rem;
+    padding: 0rem;
   }
   .content {
     width: 100%;

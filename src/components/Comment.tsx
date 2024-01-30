@@ -3,12 +3,12 @@ import AvatarImage from "./AvatarImage";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Author } from "@/services/types";
-import * as dayjs from "dayjs";
-import * as AdvancedFormat from "dayjs/plugin/advancedFormat"
+import dayjs from "dayjs";
+import relativeTime from 'dayjs/plugin/relativeTime';
+dayjs.extend(relativeTime);
 
 export default function CommentIssue({ author, createdAt, body }: { author: Author, createdAt: string, body: string }) {
-    // dayjs.extend(AdvancedFormat)
-    // const formatedDate = dayjs(createdAt).fromNow()
+    const formatedDate = dayjs(createdAt).fromNow();
     return (
         <MarkdownText className="body">
             <div className="body-header">
@@ -17,7 +17,7 @@ export default function CommentIssue({ author, createdAt, body }: { author: Auth
                         <AvatarImage avatarUrl={author.avatarUrl} />
                     )
                 }
-                <span>{`${author.login} commented on ${}`}</span>
+                <span>{`${author.login} commented ${formatedDate}`}</span>
             </div>
             <div className="body-content">
                 <Markdown remarkPlugins={[remarkGfm]}>
