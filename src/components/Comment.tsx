@@ -1,7 +1,6 @@
 import { MarkdownText } from "@/app/issue/styles";
 import AvatarImage from "./AvatarImage";
 import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import { Author } from "@/services/types";
 import dayjs from "dayjs";
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -20,7 +19,7 @@ export default function CommentIssue({ author, createdAt, body }: { author: Auth
                 <span>{`${author.login} commented ${formatedDate}`}</span>
             </div>
             <div className="body-content">
-                <Markdown remarkPlugins={[remarkGfm]}>
+                <Markdown>
                     {body}
                 </Markdown>
             </div>

@@ -1,6 +1,5 @@
-import SearchIcon from "./icons/SearchIcon";
 import CloseIcon from "./icons/CloseIcon";
-import { SearchButton, Input, CloseButton, SwitchButton, SearchBarContainer } from "./styles";
+import { Input, CloseButton, SwitchButton, SearchBarContainer } from "./styles";
 import { useRef } from "react";
 
 export default function SearchBar({
@@ -21,20 +20,25 @@ export default function SearchBar({
       inputRef.current.focus()
     }
   }
-  
+
   return (
     <SearchBarContainer>
       <Input
+        data-testid="searchbar-input"
         ref={inputRef}
         type="text"
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
         placeholder="Search for issues..."
       />
-      <CloseButton onClick={handleCloseIconClick}>
+      <CloseButton
+        data-testid="searchbar-close"
+        onClick={handleCloseIconClick}>
         <CloseIcon />
       </CloseButton>
-      <SwitchButton onClick={() => setStatusFilter(!statusFilter)} className={!statusFilter ? 'closed' : ''}>
+      <SwitchButton
+        data-testid="searchbar-swap"
+        onClick={() => setStatusFilter(!statusFilter)} className={!statusFilter ? 'closed' : ''}>
         {statusFilter ? 'OPEN' : 'CLOSED'}
       </SwitchButton>
     </SearchBarContainer>

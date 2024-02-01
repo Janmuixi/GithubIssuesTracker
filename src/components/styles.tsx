@@ -13,19 +13,6 @@ export const Input = styled.input`
   padding: 10px 12px;
 `;
 
-export const SearchButton = styled.button`
-  border-radius: 40px;
-  border: 2px solid #b554d7;
-  background: #b554d7;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  padding: 10px;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-`;
 export const CloseButton = styled.button`
   border-radius: 40px;
   border: 2px solid #b554d7;

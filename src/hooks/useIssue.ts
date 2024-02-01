@@ -1,7 +1,5 @@
 // import { fetchUsers } from '../services/users'
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import { useState } from "react";
-import { fetchComments } from "@/services/comments";
+import { useQuery } from "@tanstack/react-query";
 import { IssueQueryResponse } from "@/services/types";
 import { fetchIssue } from "@/services/issues";
 

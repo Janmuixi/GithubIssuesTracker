@@ -4,7 +4,14 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ["avatars.githubusercontent.com"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+        pathname: '**',
+      }
+      
+    ],
     formats: ["image/avif", "image/webp"],
   },
 };

@@ -1,14 +1,12 @@
 "use client"
 import { useComments } from "@/hooks/useComments";
 import { useSearchParams } from "next/navigation";
-import { IssueStyled, MarkdownText } from "./styles";
+import { IssueStyled } from "./styles";
 import { useIssue } from "@/hooks/useIssue";
-import Markdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
-import AvatarImage from "@/components/AvatarImage";
 import CommentIssue from "@/components/Comment";
 import Loader from "@/components/Loader";
 import { Comment } from "@/services/types";
+import { BackButton } from "./components/BackButton";
 
 
 export default function Issue() {
@@ -24,11 +22,16 @@ export default function Issue() {
         isError: isIssueError,
         issue,
     } = useIssue(Number(number))
-
-    if (!isIssueLoading) {
+    if (isIssueLoading) {
+        return <Loader />
+    } else if (isIssueError) {
+        return <div>There has been an error loading the issue</div>
+    }
+    else {
         return (
             <IssueStyled>
                 <div className="content">
+                    <BackButton />
                     <div className="title">
                         <h1>{issue?.title}<span>#{number}</span></h1>
                         <div className="subtitle">
@@ -40,21 +43,19 @@ export default function Issue() {
                         <CommentIssue author={issue.author} createdAt={issue.createdAt} body={issue?.body} />
                     )}
                     
-                    <CommentsList isLoading={isCommentsLoading} allComments={allComments}/>
+                    <CommentsList isLoading={isCommentsLoading} isError={isCommentsError} allComments={allComments}/>
                 </div>
             </IssueStyled>
         )
     }
-    else {
-        return <Loader />
-    }
 }
 
-export function CommentsList({ allComments, isLoading }: { allComments: Comment[], isLoading: boolean }) {
+export function CommentsList({ allComments, isLoading, isError }: { allComments: Comment[], isLoading: boolean, isError: boolean }) {
     if (isLoading) {
         return <Loader />
-    }
-    else {
+    } else if (isError) {
+        return <div>There has been an error loading the comments</div>
+    } else {
         return (
             allComments.map((comment) => {
                 return (

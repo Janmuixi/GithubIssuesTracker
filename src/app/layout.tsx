@@ -12,7 +12,7 @@ const inter = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Github issue tracker",
+  title: "Github Issue Tracker",
   description: "Track issues on Github repo",
 };
 

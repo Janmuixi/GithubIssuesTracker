@@ -95,3 +95,15 @@ export const MarkdownText = styled.div`
     }
   }
 `;
+
+export const BackButtonStyled = styled.div`
+  a {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  margin-bottom: 20px;
+`

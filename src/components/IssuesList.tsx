@@ -1,7 +1,6 @@
 import RightArrowIcon from "./icons/RightArrowIcon";
 import { Issue } from "../services/types";
 import { IssuesListContainer, IssuesListItemContainer } from "./styles";
-import Image from 'next/image'
 import Link from "next/link";
 import AvatarImage from "./AvatarImage";
 import Loader from "./Loader";
@@ -16,8 +15,8 @@ export default function IssuesList({ issuesList, isLoading, isError }: { issuesL
   } else {
     return (
       <IssuesListContainer>
-        {issuesList.map((issue) => {
-          return <IssuesListItem key={issue.id} issue={issue} />
+        {issuesList.map((issue, index) => {
+          return <IssuesListItem key={issue.id} issue={issue} index={index} />
         })}
       </IssuesListContainer>
     )
@@ -25,9 +24,9 @@ export default function IssuesList({ issuesList, isLoading, isError }: { issuesL
   }
 }
 
-export function IssuesListItem({ issue }: { issue: Issue }) {
+export function IssuesListItem({ issue, index }: { issue: Issue, index: number }) {
   return (
-    <Link href={"/issue?number=" + issue.number}>
+    <Link data-testid={`issue-item-${index}`} href={"/issue?number=" + issue.number}>
       <IssuesListItemContainer>
         <div className="left-content">
           <AvatarImage avatarUrl={issue.author.avatarUrl} />

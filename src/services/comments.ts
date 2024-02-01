@@ -1,4 +1,4 @@
-import { GET_ISSUE_COMMENTS, GET_REPOSITORY_ISSUES } from "../lib/querys";
+import { GET_ISSUE_COMMENTS } from "../lib/querys";
 import client from "./apollo-client";
 import { Comment } from "./types";
 
