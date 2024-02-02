@@ -4,6 +4,17 @@
 
 First, run the development server:
 
+Generate a new Github Token at "https://github.com/settings/tokens and give it repo permissions"
+
+Add this new token after "Bearer " in `src/services/apollo-client.ts`
+
+```
+    headers: {
+        Authorization: `Bearer {insert token here}`,
+    },
+```
+
+
 ```bash
 npm run dev
 # or
