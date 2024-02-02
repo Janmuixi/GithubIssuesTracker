@@ -6,7 +6,9 @@ You can see the full app here: https://github-issues-tracker-bice.vercel.app/
 
 Generate a new Github Token at "https://github.com/settings/tokens and give it repo permissions"
 
-Add this new token in `.env.local`
+Copy file `.env.local.example` into a new file called `.env.local`
+
+Add the previous token in `.env.local`
 
 ```
 NEXT_PUBLIC_GITHUB_ACCESS_TOKEN={add your token here}
