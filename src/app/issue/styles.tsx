@@ -20,7 +20,7 @@ export const IssueStyled = styled.section`
   }
   .title {
     padding-bottom: 10px;
-    border-bottom: 3px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 3px solid rgba(var(--foreground-rgba-light));
     span {
       color: #b554d7;
       font-weight: 500;
@@ -37,7 +37,7 @@ export const IssueStyled = styled.section`
       height: 40px;
       border: 1px solid #fff;
       background-color: green;
-      color: #fff;
+      color: white;
       border-radius: 40px;
       display: flex;
       justify-content: center;
@@ -55,15 +55,15 @@ export const IssueStyled = styled.section`
 export const MarkdownText = styled.div`
   text-align: left;
   line-height: 32px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(var(--foreground-rgba-light));
   border-radius: 5px;
   .body-header {
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(var(--foreground-rgba-light));
     padding: 5px 15px;
     min-height: 50px;
-    background-color: rgba(117, 117, 117, 0.5);
+    background-color: rgba(var(--gray-light-rbga));
     display: flex;
     align-items: center;
     gap: 10px;
@@ -89,7 +89,7 @@ export const MarkdownText = styled.div`
       }
     }
     pre {
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(var(--foreground-rgba-light));
       padding: 10px;
       border-radius: 10px;
     }

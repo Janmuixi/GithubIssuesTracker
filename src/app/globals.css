@@ -1,11 +1,9 @@
 :root {
   --foreground-rgb: 255, 255, 255;
+  --foreground-rgba-light: 255, 255, 255, 0.1;
   --background-rgb: 18, 29, 43;
-
-  --callout-rgb: 20, 20, 20;
-  --callout-border-rgb: 108, 108, 108;
-  --card-rgb: 100, 100, 100;
-  --card-border-rgb: 200, 200, 200;
+  --purple-rgb: rgb(181, 84, 215);
+  --gray-light-rbga: 117, 117, 117, 0.5;
 }
 
 * {

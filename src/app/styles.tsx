@@ -16,14 +16,14 @@ export const MainStyled = styled.section`
     height: 60px;
     border-radius: 10px;
     font-size: 20px;
-    border: 1px solid #b554d7;
-    color: #b554d7;
+    border: 1px solid var(--purple-rgb);
+    color: var(--purple-rgb);
     background-color: rgb(var(--background-rgb));
     transition: all 0.1s ease-in-out;
     cursor: pointer;
     &:hover {
       color: rgb(var(--background-rgb));
-      background-color: #b554d7;
+      background-color: var(--purple-rgb);
     }
   }
 `

@@ -15,7 +15,7 @@ export const Input = styled.input`
 
 export const CloseButton = styled.button`
   border-radius: 40px;
-  border: 2px solid #b554d7;
+  border: 2px solid var(--purple-rgb);
   background: rgba(255, 255, 255, 0.1);
   width: 40px;
   height: 40px;
