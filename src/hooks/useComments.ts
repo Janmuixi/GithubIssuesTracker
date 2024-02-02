@@ -1,8 +1,8 @@
-// import { fetchUsers } from '../services/users'
 import { useQuery } from "@tanstack/react-query";
 import { fetchComments } from "@/services/comments";
 import { CommentsIssueQueryResponse } from "@/services/types";
 
+// Hook to fetch comments given an id
 export const useComments = (number: number) => {
   const { data, isFetching, isLoading, isError } =
     useQuery<CommentsIssueQueryResponse>(

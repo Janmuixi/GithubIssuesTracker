@@ -3,8 +3,6 @@ import SearchBar from "../components/Searchbar"
 import { useEffect, useState } from "react"
 import { useIssues } from "../hooks/useIssues"
 import IssuesList from "../components/IssuesList"
-import { ApolloProvider } from "@apollo/client"
-import client from "../services/apollo-client"
 import { MainStyled } from "./styles"
 import { LoadMoreButton } from "@/components/LoadMoreButton"
 
@@ -20,6 +18,7 @@ export function Main() {
     hasNextPage,
   } = useIssues(searchText, openStatusFilter)
 
+  // when searchText or openStatusFilter changes, we want to reset the results and pagination
   useEffect(() => {
     reset()
   }, [searchText, openStatusFilter])

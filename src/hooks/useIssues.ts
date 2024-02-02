@@ -3,6 +3,7 @@ import { InfiniteSearchIssuesQueryResponse } from "../services/types";
 import { fetchIssues } from "../services/issues";
 import { useState } from "react";
 
+// Hook to get the issues list, with the filters searchText and openStatusFilter
 export const useIssues = (searchText: string, openStatusFilter: boolean) => {
   const [queryKey, setQueryKey] = useState(0);
   const {

@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { IssueQueryResponse } from "@/services/types";
 import { fetchIssue } from "@/services/issues";
 
+// Hook to fetch an issue details given an id
 export const useIssue = (number: number) => {
   const { data, isFetching, refetch, isLoading, isError, error } =
     useQuery<IssueQueryResponse>(
