@@ -5,8 +5,8 @@ import { IssueStyled } from "./styles";
 import { useIssue } from "@/hooks/useIssue";
 import CommentIssue from "@/components/Comment";
 import Loader from "@/components/Loader";
-import { Comment } from "@/services/types";
 import { BackButton } from "./components/BackButton";
+import { CommentsList } from "@/components/CommentsList";
 
 
 export default function Issue() {
@@ -46,22 +46,6 @@ export default function Issue() {
                     <CommentsList isLoading={isCommentsLoading} isError={isCommentsError} allComments={allComments}/>
                 </div>
             </IssueStyled>
-        )
-    }
-}
-
-export function CommentsList({ allComments, isLoading, isError }: { allComments: Comment[], isLoading: boolean, isError: boolean }) {
-    if (isLoading) {
-        return <Loader />
-    } else if (isError) {
-        return <div>There has been an error loading the comments</div>
-    } else {
-        return (
-            allComments.map((comment) => {
-                return (
-                    <CommentIssue key={comment.id} author={comment.author} createdAt={comment.createdAt} body={comment.body} />
-                )
-            })
         )
     }
 }

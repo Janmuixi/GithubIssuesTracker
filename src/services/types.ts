@@ -23,17 +23,17 @@ export interface IssueQueryResponse {
   }
 }
 export interface CommentsIssueQueryResponse {
-  comments: Comment[]
+  comments: CommentDetails[]
 }
 
 export interface IssueWithComments extends Pick<Issue, 'number'> {
   comments: {
     pageInfo: PageInfo,
-    nodes: Comment[]
+    nodes: CommentDetails[]
   }
 }
 
-export interface Comment {
+export interface CommentDetails {
   id: string;
   author: Author;
   body: string;

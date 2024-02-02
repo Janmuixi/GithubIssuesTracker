@@ -1,6 +1,6 @@
 import { GET_ISSUE_COMMENTS } from "../lib/querys";
 import client from "./apollo-client";
-import { Comment } from "./types";
+import { CommentDetails } from "./types";
 
 export const fetchComments = async ({
   number,
@@ -8,7 +8,7 @@ export const fetchComments = async ({
   pageParam?: number;
   number: number
 }) => {
-  let allComments: Comment[] = []
+  let allComments: CommentDetails[] = []
   let cursor = null
   let hasNextPage = true
   do {
