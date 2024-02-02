@@ -1,6 +1,6 @@
-import { Comment } from "@/services/types";
+import { CommentDetails } from "@/services/types";
 
-export const mockComments: Comment[] = [
+export const mockComments: CommentDetails[] = [
     {
         id: "I_kwDOAJy2Ks5xRUX4",
         author: {
