@@ -10,13 +10,13 @@ First, run the development server:
 
 Generate a new Github Token at "https://github.com/settings/tokens and give it repo permissions"
 
-Add this new token after "Bearer " in `.env.local`
+Add this new token in `.env.local`
 
 ```
-    NEXT_PUBLIC_GITHUB_ACCESS_TOKEN={add your token here}
+NEXT_PUBLIC_GITHUB_ACCESS_TOKEN={add your token here}
 ```
 
-
+execute the following commands:
 ```bash
 npm run dev
 # or
