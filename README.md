@@ -1,12 +1,8 @@
-
-
 ## Getting Started
 
 You can see the full app here: https://github-issues-tracker-bice.vercel.app/
 
-but if you want to execute it online...
-
-First, run the development server:
+## Run it locally
 
 Generate a new Github Token at "https://github.com/settings/tokens and give it repo permissions"
 
@@ -16,7 +12,8 @@ Add this new token in `.env.local`
 NEXT_PUBLIC_GITHUB_ACCESS_TOKEN={add your token here}
 ```
 
-execute the following commands:
+execute the following command locally:
+
 ```bash
 npm run dev
 # or
